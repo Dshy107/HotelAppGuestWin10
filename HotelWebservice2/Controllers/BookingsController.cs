@@ -17,14 +17,7 @@ namespace HotelWebservice2.Controllers
     public class BookingsController : ApiController
     {
         private HotelContext db = new HotelContext();
-
-        private static readonly Expression<Func<Booking, BookingDTO>> AsBookingDto =
-         x => new BookingDTO()
-         {
-        Booking_id = x.Booking_id,
-        Hotel_No =  x.Hotel_No
-         };
-
+       
         [Route("api/Bookings/{GuestNo:int}/Guest")]
         [HttpGet]
         public IEnumerable<Booking> GetBookingByGuestNo(int GuestNo)

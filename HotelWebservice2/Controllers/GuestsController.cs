@@ -6,6 +6,7 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using HotelWebservice2;
@@ -16,16 +17,6 @@ namespace HotelWebservice2.Controllers
     {
         private HotelContext db = new HotelContext();
 
-
-        [Route("api/Guests/{GuestNo:int}/Bookings")]
-        [HttpGet]
-        public IEnumerable<Booking> GivMigBookingByGuestNo(int GuestNo)
-        {
-            return db.Booking.Where(x => x.Guest_No == GuestNo);
-        }
-
-
-
         // GET: api/Guests
         public IQueryable<Guest> GetGuest()
         {
@@ -34,9 +25,9 @@ namespace HotelWebservice2.Controllers
 
         // GET: api/Guests/5
         [ResponseType(typeof(Guest))]
-        public IHttpActionResult GetGuest(int id)
+        public async Task<IHttpActionResult> GetGuest(int id)
         {
-            Guest guest = db.Guest.Find(id);
+            Guest guest = await db.Guest.FindAsync(id);
             if (guest == null)
             {
                 return NotFound();
@@ -47,7 +38,7 @@ namespace HotelWebservice2.Controllers
 
         // PUT: api/Guests/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutGuest(int id, Guest guest)
+        public async Task<IHttpActionResult> PutGuest(int id, Guest guest)
         {
             if (!ModelState.IsValid)
             {
@@ -63,7 +54,7 @@ namespace HotelWebservice2.Controllers
 
             try
             {
-                db.SaveChanges();
+                await db.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -82,7 +73,7 @@ namespace HotelWebservice2.Controllers
 
         // POST: api/Guests
         [ResponseType(typeof(Guest))]
-        public IHttpActionResult PostGuest(Guest guest)
+        public async Task<IHttpActionResult> PostGuest(Guest guest)
         {
             if (!ModelState.IsValid)
             {
@@ -93,7 +84,7 @@ namespace HotelWebservice2.Controllers
 
             try
             {
-                db.SaveChanges();
+                await db.SaveChangesAsync();
             }
             catch (DbUpdateException)
             {
@@ -112,16 +103,16 @@ namespace HotelWebservice2.Controllers
 
         // DELETE: api/Guests/5
         [ResponseType(typeof(Guest))]
-        public IHttpActionResult DeleteGuest(int id)
+        public async Task<IHttpActionResult> DeleteGuest(int id)
         {
-            Guest guest = db.Guest.Find(id);
+            Guest guest = await db.Guest.FindAsync(id);
             if (guest == null)
             {
                 return NotFound();
             }
 
             db.Guest.Remove(guest);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
 
             return Ok(guest);
         }
