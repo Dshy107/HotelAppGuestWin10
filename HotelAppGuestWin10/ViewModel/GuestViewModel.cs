@@ -8,10 +8,12 @@ namespace HotelAppGuestWin10.ViewModel
 {
     public class GuestViewModel
     {
+        public SingletonViewModel SingletonViewModel { get; private set; }
 
         public GuestViewModel()
         {
-            
+            this.SingletonViewModel = SingletonViewModel.Instance;
+
         }
     }
 }

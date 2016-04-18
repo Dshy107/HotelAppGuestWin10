@@ -13,6 +13,6 @@
     </Page.DataContext>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ListView x:Name="listView" HorizontalAlignment="Left" Height="586" Margin="197,78,0,0" VerticalAlignment="Top" Width="321"/>
+        <ListView x:Name="listView" HorizontalAlignment="Left" Height="586" Margin="197,78,0,0" VerticalAlignment="Top" Width="321" SelectedItem="{Binding SingletonViewModel.SelectedGuest, Mode=TwoWay}"/>
     </Grid>
 </Page>

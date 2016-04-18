@@ -45,9 +45,57 @@ namespace HotelAppGuestWin10.Facade
                     return null;
                 }
             }
+        }
 
+        public static async Task<List<Guest>> GetAllGuestAsync()
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(serverUrl);
+                client.DefaultRequestHeaders.Clear();
+                string urlString = "api/Guests/";
+                try
+                {
+                    //var response =  client.GetAsync(urlString).Result;
+                    var response = await client.GetAsync(urlString);
+                    if (response.IsSuccessStatusCode)
+                    {
+
+                        var guestList = response.Content.ReadAsAsync<List<Guest>>().Result;
+
+                        return guestList;
+
+                    }
+                    messageError = response.StatusCode.ToString();
+                    return null;
+
+                }
+                catch (Exception e)
+                {
+                    messageError = "Der er sket en fejl : " + e.Message;
+                    return null;
+                }
+            }
+        }
+
+
+        public static async Task AddSingleGuestAsync(Guest newGuest)
+        {
+            
+        }
+
+
+        public static async Task UpdateSingleGuestAsync(Guest newGuest)
+        {
 
         }
+
+        public static async Task DeleteSingleGuestAsync(Guest newGuest)
+        {
+
+        }
+
+
 
     }
 }
