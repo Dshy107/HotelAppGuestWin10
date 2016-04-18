@@ -6,10 +6,10 @@ using HotelAppGuestWin10.Model;
 namespace HotelAPPGuestUnitTest
 {
     [TestClass]
-    public class UnitTest1
+    public class UnitTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TestFacadeGetSingleGuest()
         {
             var guest = new Guest();
             guest = FacadeGuest.GetSingleGuestAsync(4).Result;

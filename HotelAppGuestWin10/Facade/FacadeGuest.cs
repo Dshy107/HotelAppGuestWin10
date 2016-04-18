@@ -18,7 +18,6 @@ namespace HotelAppGuestWin10.Facade
 
         public static async Task<Guest> GetSingleGuestAsync(int guestid)
         {
-
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(serverUrl);
