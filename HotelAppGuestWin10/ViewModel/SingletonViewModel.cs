@@ -1,23 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Notifications;
+using HotelAppGuestWin10.Annotations;
 using HotelAppGuestWin10.Facade;
 using HotelAppGuestWin10.Model;
 
 namespace HotelAppGuestWin10.ViewModel
 {
-    public class SingletonViewModel
+    public class SingletonViewModel : INotifyPropertyChanged
     {
+        private Guest _selectedGuest;
         private static SingletonViewModel InstanceSingletonViewModel { get; set; } = new SingletonViewModel();
 
         public ObservableCollection<Guest>  GuestList { get; private set; }
 
         public Guest NewGuest { get; set; }
-        public Guest SelectedGuest { get; set; }
+
+        public Guest SelectedGuest
+        {
+            get { return _selectedGuest; }
+            set
+            {
+                _selectedGuest = value;
+                OnPropertyChanged();
+            }
+        }
 
         private SingletonViewModel()
         {
@@ -61,5 +74,12 @@ namespace HotelAppGuestWin10.ViewModel
         }
 
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

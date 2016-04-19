@@ -97,6 +97,7 @@
     </Compile>
     <Compile Include="Facade\FacadeGuest.cs" />
     <Compile Include="Model\Guest.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\GuestViewModel.cs" />
     <Compile Include="ViewModel\SingletonViewModel.cs" />

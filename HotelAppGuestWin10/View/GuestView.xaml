@@ -15,6 +15,6 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <ListView x:Name="listView" HorizontalAlignment="Left" Height="586" Margin="197,78,0,0" VerticalAlignment="Top" Width="321" SelectedItem="{Binding SingletonViewModel.SelectedGuest, Mode=TwoWay}" ItemsSource="{Binding SingletonViewModel.GuestList}" Foreground="{x:Null}" Background="#FF14BA58" CanDragItems="True" CanReorderItems="True"/>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="204,29,0,0" TextWrapping="Wrap" Text="Gæster" VerticalAlignment="Top" Height="43" Width="370" FontSize="36" FontFamily="Source Code Pro Semibold"/>
-        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Height="44" Margin="604,116,0,0" TextWrapping="Wrap" Text="{Binding SingletonViewModel.SelectedGuest}" VerticalAlignment="Top" Width="498"/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Height="44" Margin="604,116,0,0" TextWrapping="Wrap" Text="{Binding SingletonViewModel.SelectedGuest.GuestDetails, Mode=OneWay}" VerticalAlignment="Top" Width="498"/>
     </Grid>
 </Page>

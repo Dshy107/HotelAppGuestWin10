@@ -20,6 +20,11 @@ namespace HotelAppGuestWin10.Model
             return Guest_No + " : " + Name;
         }
 
+        public string GuestDetails
+        {
+            get {return   Guest_No + " " + Name + " " + Address + "";}
+        }
+
         //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         //public virtual ICollection<Booking> Booking { get; set; }
     }
