@@ -12,7 +12,7 @@ namespace HotelAppGuestWin10.ViewModel
 {
     public class SingletonViewModel
     {
-        private static SingletonViewModel InstanceSingletonViewModel { get; } = new SingletonViewModel();
+        private static SingletonViewModel InstanceSingletonViewModel { get; set; } = new SingletonViewModel();
 
         public ObservableCollection<Guest>  GuestList { get; private set; }
 
@@ -24,11 +24,17 @@ namespace HotelAppGuestWin10.ViewModel
             GuestList = new ObservableCollection<Guest>();
             NewGuest = new Guest();
             SelectedGuest = new Guest();
+            LoadGuestsAsync();
         }
 
         public static SingletonViewModel Instance
         {
-            get { return InstanceSingletonViewModel; }
+            get { 
+                if (InstanceSingletonViewModel == null)
+                    return InstanceSingletonViewModel = new SingletonViewModel();
+                else
+                    return InstanceSingletonViewModel;
+            }
         }
 
         public void AddGuest(Guest newGuest)
@@ -42,10 +48,16 @@ namespace HotelAppGuestWin10.ViewModel
 
         }
 
-        public void LoadGuests()
+        public async Task LoadGuestsAsync()
         {
-           this.GuestList.Clear();
-           this.GuestList = new ObservableCollection<Guest>(FacadeGuest.GetAllGuestAsync().Result);;
+            //this.GuestList.Clear();
+            //this.GuestList.Add(new Guest() {Guest_No =200,Address = "testvej",Name = "test"});
+            foreach (var g in await FacadeGuest.GetAllGuestAsync())
+            {
+                this.GuestList.Add(g);
+            }
+
+            //this.GuestList = new ObservableCollection<Guest>(FacadeGuest.GetAllGuestAsync().Result);;
         }
 
 

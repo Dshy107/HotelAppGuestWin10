@@ -15,6 +15,11 @@ namespace HotelAppGuestWin10.Model
 
         public string Address { get; set; }
 
+        public override string ToString()
+        {
+            return Guest_No + " : " + Name;
+        }
+
         //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         //public virtual ICollection<Booking> Booking { get; set; }
     }
