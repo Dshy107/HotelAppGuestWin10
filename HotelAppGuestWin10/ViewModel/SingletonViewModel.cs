@@ -15,6 +15,20 @@ namespace HotelAppGuestWin10.ViewModel
 {
     public class SingletonViewModel : INotifyPropertyChanged
     {
+        private bool _isBusy;
+
+         public bool IsBusy
+        {
+            get { return _isBusy; }
+             set
+             {
+                 _isBusy = value;
+                 OnPropertyChanged(nameof(IsBusy));
+             }
+        }
+
+
+
         private Guest _selectedGuest;
         private static SingletonViewModel InstanceSingletonViewModel { get; set; } = new SingletonViewModel();
 
@@ -63,15 +77,28 @@ namespace HotelAppGuestWin10.ViewModel
 
         public async Task LoadGuestsAsync()
         {
-            //this.GuestList.Clear();
-            //this.GuestList.Add(new Guest() {Guest_No =200,Address = "testvej",Name = "test"});
-            foreach (var g in await FacadeGuest.GetAllGuestAsync())
+
+            try
             {
-                this.GuestList.Add(g);
+                IsBusy = true;
+                this.GuestList.Clear();
+                foreach (var g in await FacadeGuest.GetAllGuestAsync())
+                {
+                    this.GuestList.Add(g);
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+            finally
+            {
+                IsBusy = false;
             }
 
-            //this.GuestList = new ObservableCollection<Guest>(FacadeGuest.GetAllGuestAsync().Result);;
         }
+
 
 
         public event PropertyChangedEventHandler PropertyChanged;

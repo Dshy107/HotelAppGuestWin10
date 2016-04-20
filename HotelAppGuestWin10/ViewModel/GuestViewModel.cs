@@ -14,6 +14,7 @@ namespace HotelAppGuestWin10.ViewModel
         {
             this.SingletonViewModel = SingletonViewModel.Instance;
 
+
         }
     }
 }
