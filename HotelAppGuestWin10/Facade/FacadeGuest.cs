@@ -9,13 +9,21 @@ using HotelAppGuestWin10.Model;
 
 namespace HotelAppGuestWin10.Facade
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class FacadeGuest
     {
 
-        const string serverUrl = "http://localhost.fiddler:55555";
-        //const string serverUrl = "http://localhost:55555";
+        //const string serverUrl = "http://localhost.fiddler:55555";
+        const string serverUrl = "http://localhost:55555";
         public static string messageError = "";
 
+        /// <summary>
+        /// Henter en enkelt gæst
+        /// </summary>
+        /// <param name="guestid"></param>
+        /// <returns>liste af gæster </returns>
         public static async Task<Guest> GetSingleGuestAsync(int guestid)
         {
             using (var client = new HttpClient())

@@ -16,7 +16,6 @@ namespace HotelAppGuestWin10.ViewModel
     public class SingletonViewModel : INotifyPropertyChanged
     {
         private bool _isBusy;
-
          public bool IsBusy
         {
             get { return _isBusy; }
@@ -27,9 +26,18 @@ namespace HotelAppGuestWin10.ViewModel
              }
         }
 
-
+        public Guest SelectedGuestComboBox
+        {
+            get { return _selectedGuestComboBox; }
+            set
+            {
+                _selectedGuestComboBox = value; 
+                OnPropertyChanged();
+            }
+        }
 
         private Guest _selectedGuest;
+        private Guest _selectedGuestComboBox;
         private static SingletonViewModel InstanceSingletonViewModel { get; set; } = new SingletonViewModel();
 
         public ObservableCollection<Guest>  GuestList { get; private set; }
@@ -75,12 +83,13 @@ namespace HotelAppGuestWin10.ViewModel
 
         }
 
-        public async Task LoadGuestsAsync()
+        public async void LoadGuestsAsync()
         {
 
             try
             {
                 IsBusy = true;
+
                 this.GuestList.Clear();
                 foreach (var g in await FacadeGuest.GetAllGuestAsync())
                 {
@@ -89,14 +98,13 @@ namespace HotelAppGuestWin10.ViewModel
             }
             catch (Exception e)
             {
-
+                //TODO her skal der vises en meddelse til brugeren hvis noget går galt
                 throw;
             }
             finally
             {
                 IsBusy = false;
             }
-
         }
 
 
