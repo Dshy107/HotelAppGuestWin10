@@ -17,10 +17,13 @@
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="204,29,0,0" TextWrapping="Wrap" Text="Gæster" VerticalAlignment="Top" Height="43" Width="370" FontSize="36" FontFamily="Source Code Pro Semibold"/>
         <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Height="44" Margin="604,116,0,0" TextWrapping="Wrap" Text="{Binding SingletonViewModel.SelectedGuest.GuestDetails, Mode=OneWay}" VerticalAlignment="Top" Width="498"/>
         <ProgressRing HorizontalAlignment="Left" Margin="271,282,0,0" VerticalAlignment="Top" IsActive="{Binding SingletonViewModel.IsBusy, Mode=TwoWay}" Height="139" Width="160" Foreground="#FFD08817" BorderBrush="#FF233B89"/>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Height="65" Margin="523,599,0,0" VerticalAlignment="Top" Width="110" Command="{Binding GetGuestCommand}"/>
+        <Button x:Name="button" Content="Hent gæster" HorizontalAlignment="Left" Height="65" Margin="523,599,0,0" VerticalAlignment="Top" Width="110" Command="{Binding GetGuestCommand}"/>
         <ProgressRing HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Height="57" Margin="523,225,0,0" VerticalAlignment="Top" Width="178" ItemsSource="{Binding SingletonViewModel.GuestList}" SelectedItem="{Binding SingletonViewModel.SelectedGuestComboBox, Mode = TwoWay}"/>
         <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="67" Margin="541,324,0,0" VerticalAlignment="Top" Width="160" ItemsSource="{Binding SingletonViewModel.Instance.GuestList}"/>
         <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="65" Margin="749,217,0,0" TextWrapping="Wrap" Text="{Binding SingletonViewModel.SelectedGuestComboBox, Mode=OneWay}" VerticalAlignment="Top" Width="192"/>
+        <Button x:Name="button_Copy" Content="Button" HorizontalAlignment="Left" Height="65" Margin="749,599,0,0" VerticalAlignment="Top" Width="110" />
+        <Button x:Name="button_Copy1" Content="Button" HorizontalAlignment="Left" Height="65" Margin="749,495,0,0" VerticalAlignment="Top" Width="110" />
+        <Button x:Name="button_Copy2" Content="Button" HorizontalAlignment="Left" Height="65" Margin="895,495,0,0" VerticalAlignment="Top" Width="110"  RenderTransformOrigin="2.092,0.782"/>
     </Grid>
 </Page>

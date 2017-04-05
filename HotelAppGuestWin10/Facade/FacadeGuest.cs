@@ -15,8 +15,8 @@ namespace HotelAppGuestWin10.Facade
     public static class FacadeGuest
     {
 
-        //const string serverUrl = "http://localhost.fiddler:55555";
-        const string serverUrl = "http://localhost:55555";
+        const string serverUrl = "http://webservicehotelguestasyncdemo20170403082435.azurewebsites.net/";
+        //const string serverUrl = "http://localhost:55555";
         public static string messageError = "";
 
         /// <summary>
@@ -34,7 +34,8 @@ namespace HotelAppGuestWin10.Facade
                 try
                 {
                     //var response =  client.GetAsync(urlString).Result;
-                    var response = await client.GetAsync(urlString);
+                    //var response = await client.GetAsync(urlString);
+                    var response =  client.GetAsync(urlString).Result;
                     if (response.IsSuccessStatusCode)
                     {
                         
@@ -56,6 +57,7 @@ namespace HotelAppGuestWin10.Facade
         }
 
         public static async Task<List<Guest>> GetAllGuestAsync()
+        //public static List<Guest> GetAllGuestAsync()
         {
             using (var client = new HttpClient())
             {
@@ -66,10 +68,12 @@ namespace HotelAppGuestWin10.Facade
                 {
                     //var response =  client.GetAsync(urlString).Result;
                     var response = await client.GetAsync(urlString);
+                    //var response =  client.GetAsync(urlString).Result;
                     if (response.IsSuccessStatusCode)
                     {
 
-                        var guestList = response.Content.ReadAsAsync<List<Guest>>().Result;
+                        var guestList = await response.Content.ReadAsAsync<List<Guest>>();
+                        //var guestList =  response.Content.ReadAsAsync<List<Guest>>(),Result;
 
                         return guestList;
 
